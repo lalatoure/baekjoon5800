@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(void) {
+	int K;
+	int N;
+	scanf("%d", &K);
+	for (int i = 0; i < K; i++) {
+		scanf("%d", &N);
+		int score[100] = { 0 };
+		int gap = 0;
+		int least=0;
+		int temp=0;
+		for (int j = 0; j < N; j++) {
+			scanf("%d", &score[j]);
+		}for (int k = 0; k < N - 1; k++) {
+			least = k;
+			for (int p = k + 1; p < N; p++) {
+				if (score[least] > score[p])
+					least = p;
+			}temp = score[least];
+			score[least] = score[k];
+			score[k] = temp;
+		}
+			for (int q = 0; q < N - 1; q++) {
+				if (score[q + 1] - score[q] > gap)
+					gap = score[q + 1] - score[q];
+		}printf("Class %d\nMax %d, Min %d, Largest gap %d\n", i+1, score[N - 1], score[0],gap);
+
+	}
+}
